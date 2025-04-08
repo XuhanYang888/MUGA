@@ -1,5 +1,6 @@
 # MUGA
-https://xuhanyang888.github.io/MUGA/about_us.html
+
+[Website](https://xuhanyang888.github.io/MUGA/about_us.html)
 
 # REQUIREMENTS
 - Ollama must be installed. Detailed instructions can be found [here](https://github.com/ollama/ollama)
