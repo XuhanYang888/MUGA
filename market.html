@@ -15,10 +15,10 @@
                 <h1>MUGA</h1>
             </div>
             <nav>
-                <ul>    
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#" class = "active">Market</a></li>
-                    <li><a href="#">Sell</a></li>
+                <ul>
+                    <li><a href="market.html" class = "active">Market</a></li>
+                    <li><a href="upload.html">Sell</a></li>
+                    <li><a href="about_us.html">About Us</a></li>
                 </ul>
             </nav>
             <div class="search-container">
@@ -29,10 +29,12 @@
                     </button>
                 </form>
             </div>
-            <div class="user-actions">
-                <a href="#" class="login">Login</a>
-                <a href="#" class="cart">Cart / $0.00</a>
-            </div>
+            <nav class="user-actions">
+                <ul>
+                    <li><a href="#" class="login">Login</a></li>
+                    <li><a href="#" class="cart">Cart / $0.00</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
@@ -47,16 +49,20 @@
                 <button class="carousel-arrow prev"><i class="fas fa-chevron-left"></i></button>
                 <div class="products">
                     <div class="product">
-                        <img src="/placeholder.svg?height=250&width=200" alt="Blue Hoodie">
+                        <img src="imgs/Windproof Jacket.png">
+                        <p>Windproof Jacket<br>$15.00</p>
                     </div>
                     <div class="product">
-                        <img src="/placeholder.svg?height=250&width=200" alt="Leather Belt">
+                        <img src="imgs/Cargo Pants.png">
+                        <p>Cargo Pants<br>$10.00</p>
                     </div>
                     <div class="product">
-                        <img src="/placeholder.svg?height=250&width=200" alt="Sandals">
+                        <img src="imgs/Blazer.png">
+                        <p>Blazer<br>$20.00</p>
                     </div>
                     <div class="product">
-                        <img src="/placeholder.svg?height=250&width=200" alt="Hat">
+                        <img src="imgs/Derby Shoes.png">
+                        <p>Derby Shoes<br>$30.00</p>
                     </div>
                 </div>
                 <button class="carousel-arrow next"><i class="fas fa-chevron-right"></i></button>
@@ -64,63 +70,153 @@
         </div>
     </section>
 
+    <br>
+
     <section class="featured">
         <div class="container">
             <div class="section-header">
                 <span class="section-label">OUR COLLECTION</span>
                 <h2>Featured Products</h2>
             </div>
-            <div class="product-carousel">
-                <div class="products">
-                    <div class="product">
-                        <img src="/placeholder.svg?height=250&width=200" alt="Blue Hoodie">
+            <div class="lr-container">
+                <div class="left" style="width: 300px; border-right: 1px solid lightgray;">
+                    <details open>
+                        <summary>Category</summary>
+                        <ul>
+                            <li>
+                                Clothes & Accessories
+                            </li>
+                            <li>
+                                Electronics
+                            </li>
+                            <li>
+                                Home & Kitchen
+                            </li>
+                            <li>
+                                Furnitures
+                            </li>
+                            <li>
+                                Books & Media
+                            </li>
+                            <li>
+                                Toys
+                            </li>
+                            <li>
+                                Sports & Outdoors
+                            </li>
+                        </ul>
+                      </details>
+                      <details open>
+                        <summary>Price</summary>
+                        <ul>
+                            <li>
+                                Free
+                            </li>
+                            <li>
+                                $3 - $5
+                            </li>
+                            <li>
+                                $5 - $10
+                            </li>
+                            <li>
+                                $10 - $20
+                            </li>
+                            <li>
+                                $20 - $40
+                            </li>
+                            <li>
+                                $40 and up
+                            </li>
+                            <li style="display: flex; justify-content: space-between;">
+                                <div>Any</div><div style="margin-right: 40px;">✓</div>
+                            </li>
+                        </ul>
+                      </details>
+                      <details open>
+                        <summary>Product Condition</summary>
+                        <ul>
+                            <li>
+                                Open Box
+                            </li>
+                            <li>
+                                Almost New
+                            </li>
+                            <li>
+                                Fair
+                            </li>
+                            <li>
+                                Worn
+                            </li>
+                            <li>
+                                Poor
+                            </li>
+                            <li style="display: flex; justify-content: space-between;">
+                                <div>Any</div><div style="margin-right: 40px;">✓</div>
+                            </li>
+                        </ul>
+                      </details>
+                </div>
+                <div class="right">
+                    <div style="text-align: right; padding-right: 10px;">
+                        <select name="sort" id="sort">
+                            <option value="best_match">Best Match</option>
+                            <option value="price_low_high">Price Low-High</option>
+                            <option value="price_high_low">Price High-Low</option>
+                            <option value="highest_rated">Highest Rated</option>
+                          </select>
                     </div>
-                    <div class="product">
-                        <img src="/placeholder.svg?height=250&width=200" alt="Leather Belt">
+                    <div class="product-carousel">
+                        <div class="products">
+                            <div class="product">
+                                <img src="imgs/Windproof Jacket.png">
+                                <p>Windproof Jacket<br>$15.00</p>
+                            </div>
+                            <div class="product">
+                                <img src="imgs/Blazer.png">
+                                <p>Blazer<br>$20.00</p>
+                            </div>
+                            <div class="product">
+                                <img src="imgs/Derby Shoes.png">
+                                <p>Derby Shoes<br>$30.00</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="product">
-                        <img src="/placeholder.svg?height=250&width=200" alt="Sandals">
+                    <div class="product-carousel">
+                        <div class="products">
+                            <div class="product">
+                                <img src="imgs/Cargo Pants.png">
+                                <p>Cargo Pants<br>$10.00</p>
+                            </div>
+                            <div class="product">
+                                <img src="imgs/Blazer.png">
+                                <p>Blazer<br>$20.00</p>
+                            </div>
+                            <div class="product">
+                                <img src="imgs/Derby Shoes.png">
+                                <p>Derby Shoes<br>$30.00</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="product">
-                        <img src="/placeholder.svg?height=250&width=200" alt="Hat">
+                    <div class="product-carousel">
+                        <div class="products">
+                            <div class="product">
+                                <img src="imgs/Windproof Jacket.png">
+                                <p>Windproof Jacket<br>$15.00</p>
+                            </div>
+                            <div class="product">
+                                <img src="imgs/Cargo Pants.png">
+                                <p>Cargo Pants<br>$10.00</p>
+                            </div>
+                            <div class="product">
+                                <img src="imgs/Blazer.png">
+                                <p>Blazer<br>$20.00</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <br>
-            <div class="product-carousel">
-                <div class="products">
-                    <div class="product">
-                        <img src="/placeholder.svg?height=250&width=200" alt="Blue Hoodie">
-                    </div>
-                    <div class="product">
-                        <img src="/placeholder.svg?height=250&width=200" alt="Leather Belt">
-                    </div>
-                    <div class="product">
-                        <img src="/placeholder.svg?height=250&width=200" alt="Sandals">
-                    </div>
-                    <div class="product">
-                        <img src="/placeholder.svg?height=250&width=200" alt="Hat">
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="product-carousel">
-                <div class="products">
-                    <div class="product">
-                        <img src="/placeholder.svg?height=250&width=200" alt="Blue Hoodie">
-                    </div>
-                    <div class="product">
-                        <img src="/placeholder.svg?height=250&width=200" alt="Leather Belt">
-                    </div>
-                    <div class="product">
-                        <img src="/placeholder.svg?height=250&width=200" alt="Sandals">
-                    </div>
-                    <div class="product">
-                        <img src="/placeholder.svg?height=250&width=200" alt="Hat">
-                    </div>
-                </div>
-            </div>
+            </div>   
         </div>
     </section>
+    <br><br>
 </body>
 </html>

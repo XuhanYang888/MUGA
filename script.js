@@ -8,10 +8,10 @@ const debugInfo = document.getElementById('debug-info');
 function updateUI() {
     if (imageBase64) {
         sendButton.disabled = false;
-        statusElement.textContent = 'Ready to query Gemma3:4b';
+        statusElement.textContent = 'Ready to Send';
     } else {
         sendButton.disabled = true;
-        statusElement.textContent = 'Upload an image to start';
+        statusElement.textContent = 'Upload an Image To Start';
     }
 }
 
@@ -19,7 +19,7 @@ function updateUI() {
 updateUI();
 
 document.getElementById('send-button').addEventListener('click', async function() {
-    const userInput = document.getElementById('user-input').value;
+    const userInput = "Describe the cloth in the image in point form, include the following: 1. Brand (if it is visible); 2. Name (e.g., Nike hoodie); 3. Primary Colors; 4. Condition (New, Worn, etc); Estimated Resell Price in CAD (very cheap, it is second-hand, between $3 and $40); 6. Estimated Size (XS, S, M, L, XL); 7. Primary Materials. If there are multiple pieces of clothes, provide description for each of them. Do not provide any extraneous information. Respond right away. Do NOT start with a introductory sentence like 'Heres a description in point form:'.";
     const responseArea = document.getElementById('response-area');
     
     if (!rawImageBase64) {
@@ -32,9 +32,8 @@ document.getElementById('send-button').addEventListener('click', async function(
         return;
     }
     
-    statusElement.textContent = 'Querying Gemma3:4b...';
+    statusElement.textContent = 'Loading...';
     responseArea.textContent = '';
-    debugInfo.textContent = '';
     
     try {
         // Create the request body with the raw base64 image data
@@ -45,8 +44,6 @@ document.getElementById('send-button').addEventListener('click', async function(
             stream: true
         };
         
-        debugInfo.textContent = `Sending request to Ollama API...`;
-        
         // Always use the generate endpoint for image queries
         const response = await fetch('http://localhost:11434/api/generate', {
             method: 'POST',
@@ -56,13 +53,16 @@ document.getElementById('send-button').addEventListener('click', async function(
         
         if (!response.ok) {
             const errorText = await response.text();
-            debugInfo.textContent += `\nError response: ${errorText}`;
+            if (debugInfo) {
+                debugInfo.textContent += `\nError response: ${errorText}`;
+            }
             throw new Error(`HTTP error! status: ${response.status}, details: ${errorText}`);
         }
         
         const reader = response.body.getReader();
         const decoder = new TextDecoder("utf-8");
         let buffer = '';
+        let accumulatedMarkdown = '';
         
         while (true) {
             const { done, value } = await reader.read();
@@ -83,7 +83,19 @@ document.getElementById('send-button').addEventListener('click', async function(
                     
                     // Update response area with streaming content
                     if (json.response) {
-                        responseArea.textContent += json.response;
+                        // Add the new chunk to our accumulated markdown
+                        accumulatedMarkdown += json.response;
+                        
+                        // Clear the response area
+                        responseArea.innerHTML = '';
+                        
+                        // Process the entire markdown accumulated so far
+                        // This ensures we properly handle markdown that spans across multiple chunks
+                        const formattedResponse = accumulatedMarkdown
+                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\n/g, '<br>');
+                            
+                        responseArea.innerHTML = formattedResponse;
                     }
                     
                     // Move index past this JSON object
@@ -96,6 +108,15 @@ document.getElementById('send-button').addEventListener('click', async function(
             
             // Keep any remaining incomplete JSON for the next iteration
             buffer = buffer.substring(jsonStartIndex);
+        }
+        
+        // Final formatting pass to ensure everything is properly rendered
+        if (accumulatedMarkdown) {
+            const finalFormattedResponse = accumulatedMarkdown
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n/g, '<br>');
+                
+            responseArea.innerHTML = finalFormattedResponse;
         }
         
         statusElement.textContent = 'Response complete';
@@ -122,9 +143,7 @@ document.getElementById('image-upload').addEventListener('change', function(even
             const base64Index = imageBase64.indexOf(base64Prefix);
             if (base64Index !== -1) {
                 rawImageBase64 = imageBase64.substring(base64Index + base64Prefix.length);
-                debugInfo.textContent = `Image converted to base64 successfully (${Math.round(rawImageBase64.length / 1024)} KB)`;
             } else {
-                debugInfo.textContent = "Warning: Could not extract base64 data correctly";
                 rawImageBase64 = null;
             }
             
@@ -153,6 +172,8 @@ function clearImage() {
     fileInput.value = '';
     imageBase64 = null;
     rawImageBase64 = null;
-    debugInfo.textContent = '';
+    if (debugInfo) {
+        debugInfo.textContent = '';
+    }
     updateUI();
 }

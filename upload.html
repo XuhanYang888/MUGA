@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUGA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Nav bar -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>MUGA</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="market.html">Market</a></li>
+                    <li><a href="upload.html" class = "active">Sell</a></li>
+                    <li><a href="about_us.html">About Us</a></li>
+                </ul>
+            </nav>
+            <div class="search-container">
+                <form class="search-form">
+                    <input type="text" class="search-input" placeholder="Search...">
+                    <button type="submit" class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="login">Login</a></li>
+                    <li><a href="#" class="cart">Cart / $0.00</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Upload Products Section -->
+    <section class="upload">
+        <div class="container">
+            <h2>Upload Image</h2>
+            <div>An image is required <span class="required-indicator">*</span></div>
+            <input type="file" id="image-upload" accept="image/*">
+            <br><br>
+            <div class="image-container">
+                <img id="image-preview" style="max-width: 100%; max-height: 300px; border-radius: 8px; display: none;" alt="Image preview">
+                <div class="clear-image" id="clear-image">✕</div>
+            </div>
+            <br>
+            <button id="send-button" disabled>Send Query</button>
+        </div>
+        <br><br>
+        <div class="container">
+            <div class="card">
+                <h2>Response</h2>
+                <div class="status" id="status">Upload an image to start</div>
+                <br>
+                <div id="response-area"></div>
+            </div>
+        </div>
+    </section>
+    
+    <script src = "script.js"></script>
+</body>
+</html>
