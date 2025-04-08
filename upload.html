@@ -17,7 +17,7 @@
             <nav>
                 <ul>
                     <li><a href="market.html">Market</a></li>
-                    <li><a href="upload.html" class = "active">Sell</a></li>
+                    <li><a href="upload.html" class = "active">Upload</a></li>
                     <li><a href="about_us.html">About Us</a></li>
                 </ul>
             </nav>
@@ -29,7 +29,7 @@
                     </button>
                 </form>
             </div>
-            <nav>
+            <nav class="user-actions">
                 <ul>
                     <li><a href="#" class="login">Login</a></li>
                     <li><a href="#" class="cart">Cart / $0.00</a></li>
@@ -38,29 +38,42 @@
         </div>
     </header>
 
-    <!-- Upload Products Section -->
-    <section class="upload">
-        <div class="container">
-            <h2>Upload Image</h2>
-            <div>An image is required <span class="required-indicator">*</span></div>
+   <!-- Upload Products Section -->
+   <section class="upload">
+    <div class="container">
+        <h2>Upload Image</h2>
+        <div>An image is required <span class="required-indicator">*</span></div>
+        <br>
+        
+        <!-- Custom upload box with preview inside -->
+        <div class="upload-box-container">
             <input type="file" id="image-upload" accept="image/*">
-            <br><br>
-            <div class="image-container">
-                <img id="image-preview" style="max-width: 100%; max-height: 300px; border-radius: 8px; display: none;" alt="Image preview">
-                <div class="clear-image" id="clear-image">✕</div>
-            </div>
-            <br>
-            <button id="send-button" disabled>Send Query</button>
+            <label for="image-upload" class="upload-box" id="upload-box">
+                <img id="image-preview" style="display: none;" alt="Image preview">
+                <div class="upload-content">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Click to upload image</p>
+                    <p class="small-text">or drag and drop</p>
+                </div>
+            </label>
+        </div>
+        
+        <button id="send-button" disabled>Generate Description</button>
         </div>
         <br><br>
         <div class="container">
             <div class="card">
-                <h2>Response</h2>
+                <h2>Description</h2>
                 <div class="status" id="status">Upload an image to start</div>
                 <br>
                 <div id="response-area"></div>
             </div>
         </div>
+        <br><br>
+        <div class="container">
+            <button id="upload-button">Upload to Market</button>
+        </div>
+        <br>
     </section>
     
     <script src = "script.js"></script>

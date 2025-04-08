@@ -2,16 +2,18 @@ let imageBase64 = null;
 let rawImageBase64 = null;
 const sendButton = document.getElementById('send-button');
 const statusElement = document.getElementById('status');
-const debugInfo = document.getElementById('debug-info');
+const uploadBox = document.getElementById('upload-box');
 
 // Function to update UI based on whether an image is present
 function updateUI() {
     if (imageBase64) {
         sendButton.disabled = false;
-        statusElement.textContent = 'Ready to Send';
+        statusElement.textContent = 'Ready to Generate';
+        uploadBox.classList.add('has-image');
     } else {
         sendButton.disabled = true;
         statusElement.textContent = 'Upload an Image To Start';
+        uploadBox.classList.remove('has-image');
     }
 }
 
@@ -53,9 +55,6 @@ document.getElementById('send-button').addEventListener('click', async function(
         
         if (!response.ok) {
             const errorText = await response.text();
-            if (debugInfo) {
-                debugInfo.textContent += `\nError response: ${errorText}`;
-            }
             throw new Error(`HTTP error! status: ${response.status}, details: ${errorText}`);
         }
         
@@ -130,7 +129,6 @@ document.getElementById('send-button').addEventListener('click', async function(
 document.getElementById('image-upload').addEventListener('change', function(event) {
     const file = event.target.files[0];
     const preview = document.getElementById('image-preview');
-    const clearButton = document.getElementById('clear-image');
 
     if (file) {
         const reader = new FileReader();
@@ -150,7 +148,6 @@ document.getElementById('image-upload').addEventListener('change', function(even
             // Update UI
             preview.src = imageBase64;
             preview.style.display = 'block';
-            clearButton.style.display = 'block';
             updateUI();
         };
         reader.readAsDataURL(file);
@@ -159,21 +156,58 @@ document.getElementById('image-upload').addEventListener('change', function(even
     }
 });
 
-document.getElementById('clear-image').addEventListener('click', clearImage);
-
 function clearImage() {
     const preview = document.getElementById('image-preview');
-    const clearButton = document.getElementById('clear-image');
     const fileInput = document.getElementById('image-upload');
     
     preview.src = '';
     preview.style.display = 'none';
-    clearButton.style.display = 'none';
     fileInput.value = '';
     imageBase64 = null;
     rawImageBase64 = null;
-    if (debugInfo) {
-        debugInfo.textContent = '';
-    }
     updateUI();
+}
+
+// Add drag and drop functionality
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    uploadBox.addEventListener(eventName, preventDefaults, false);
+});
+
+function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+['dragenter', 'dragover'].forEach(eventName => {
+    uploadBox.addEventListener(eventName, highlight, false);
+});
+
+['dragleave', 'drop'].forEach(eventName => {
+    uploadBox.addEventListener(eventName, unhighlight, false);
+});
+
+function highlight() {
+    uploadBox.style.borderColor = 'var(--l-blue)';
+    uploadBox.style.backgroundColor = '#f0f7ff';
+}
+
+function unhighlight() {
+    uploadBox.style.borderColor = 'var(--d-blue)';
+    uploadBox.style.backgroundColor = 'var(--white2)';
+}
+
+uploadBox.addEventListener('drop', handleDrop, false);
+
+function handleDrop(e) {
+    const dt = e.dataTransfer;
+    const file = dt.files[0];
+    
+    if (file && file.type.startsWith('image/')) {
+        const fileInput = document.getElementById('image-upload');
+        fileInput.files = dt.files;
+        
+        // Trigger the change event manually
+        const event = new Event('change', { bubbles: true });
+        fileInput.dispatchEvent(event);
+    }
 }
