@@ -1,4 +1,6 @@
 # MUGA
+https://xuhanyang888.github.io/MUGA/about_us.html
+
 # REQUIREMENTS
 - Ollama must be installed. Detailed instructions can be found [here](https://github.com/ollama/ollama)
 - The Gemma3:4B AI Model must be installed. You can do so by running `ollama pull gemma3:4b` in the Command Prompt.
