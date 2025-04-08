@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MUGA</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.cdnfonts.com/css/xeroda" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
+<body style="background-color: rgba(0,48,73,1);">
     <!-- Nav bar -->
     <header>
         <div class="container">
@@ -16,207 +17,65 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="market.html" class = "active">Market</a></li>
+                    <li><a href="market.html">Market</a></li>
                     <li><a href="upload.html">Upload</a></li>
-                    <li><a href="about_us.html">About Us</a></li>
-                </ul>
-            </nav>
-            <div class="search-container">
-                <form class="search-form">
-                    <input type="text" class="search-input" placeholder="Search...">
-                    <button type="submit" class="search-button">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
-            </div>
-            <nav class="user-actions">
-                <ul>
-                    <li><a href="#" class="login">Login</a></li>
-                    <li><a href="#" class="cart">Cart / $0.00</a></li>
+                    <li><a href="about_us.html" class = "active">About Us</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Recommended Products Section -->
-    <section class="recommended">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">RECOMMENDED</span>
-                <h2>Sale Products</h2>
-            </div>
-            <div class="product-carousel">
-                <button class="carousel-arrow prev"><i class="fas fa-chevron-left"></i></button>
-                <div class="products">
-                    <div class="product">
-                        <img src="imgs/Windproof Jacket.png">
-                        <p>Windproof Jacket<br>$15.00</p>
-                    </div>
-                    <div class="product">
-                        <img src="imgs/Cargo Pants.png">
-                        <p>Cargo Pants<br>$10.00</p>
-                    </div>
-                    <div class="product">
-                        <img src="imgs/Blazer.png">
-                        <p>Blazer<br>$20.00</p>
-                    </div>
-                    <div class="product">
-                        <img src="imgs/Derby Shoes.png">
-                        <p>Derby Shoes<br>$30.00</p>
-                    </div>
-                </div>
-                <button class="carousel-arrow next"><i class="fas fa-chevron-right"></i></button>
-            </div>
+    <!-- Logo Section -->
+    <section id="logo-section">
+        <div>
+            <img id="logo-img" src="imgs/logo.png">
+            <h1>MUGA</h1>
+            <h2>Smart Tech. Real Impact.</h2>
         </div>
     </section>
-
     <br>
 
-    <section class="featured">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">OUR COLLECTION</span>
-                <h2>Featured Products</h2>
-            </div>
-            <div class="lr-container">
-                <div class="left" style="width: 300px; border-right: 1px solid lightgray;">
-                    <details open>
-                        <summary>Category</summary>
-                        <ul>
-                            <li>
-                                Clothes & Accessories
-                            </li>
-                            <li>
-                                Electronics
-                            </li>
-                            <li>
-                                Home & Kitchen
-                            </li>
-                            <li>
-                                Furnitures
-                            </li>
-                            <li>
-                                Books & Media
-                            </li>
-                            <li>
-                                Toys
-                            </li>
-                            <li>
-                                Sports & Outdoors
-                            </li>
-                        </ul>
-                      </details>
-                      <details open>
-                        <summary>Price</summary>
-                        <ul>
-                            <li>
-                                Free
-                            </li>
-                            <li>
-                                $3 - $5
-                            </li>
-                            <li>
-                                $5 - $10
-                            </li>
-                            <li>
-                                $10 - $20
-                            </li>
-                            <li>
-                                $20 - $40
-                            </li>
-                            <li>
-                                $40 and up
-                            </li>
-                            <li style="display: flex; justify-content: space-between;">
-                                <div>Any</div><div style="margin-right: 40px;">✓</div>
-                            </li>
-                        </ul>
-                      </details>
-                      <details open>
-                        <summary>Product Condition</summary>
-                        <ul>
-                            <li>
-                                Open Box
-                            </li>
-                            <li>
-                                Almost New
-                            </li>
-                            <li>
-                                Fair
-                            </li>
-                            <li>
-                                Worn
-                            </li>
-                            <li>
-                                Poor
-                            </li>
-                            <li style="display: flex; justify-content: space-between;">
-                                <div>Any</div><div style="margin-right: 40px;">✓</div>
-                            </li>
-                        </ul>
-                      </details>
-                </div>
-                <div class="right">
-                    <div style="text-align: right; padding-right: 10px;">
-                        <select name="sort" id="sort">
-                            <option value="best_match">Best Match</option>
-                            <option value="price_low_high">Price Low-High</option>
-                            <option value="price_high_low">Price High-Low</option>
-                            <option value="highest_rated">Highest Rated</option>
-                          </select>
-                    </div>
-                    <div class="product-carousel">
-                        <div class="products">
-                            <div class="product">
-                                <img src="imgs/Windproof Jacket.png">
-                                <p>Windproof Jacket<br>$15.00</p>
-                            </div>
-                            <div class="product">
-                                <img src="imgs/Blazer.png">
-                                <p>Blazer<br>$20.00</p>
-                            </div>
-                            <div class="product">
-                                <img src="imgs/Derby Shoes.png">
-                                <p>Derby Shoes<br>$30.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-carousel">
-                        <div class="products">
-                            <div class="product">
-                                <img src="imgs/Cargo Pants.png">
-                                <p>Cargo Pants<br>$10.00</p>
-                            </div>
-                            <div class="product">
-                                <img src="imgs/Blazer.png">
-                                <p>Blazer<br>$20.00</p>
-                            </div>
-                            <div class="product">
-                                <img src="imgs/Derby Shoes.png">
-                                <p>Derby Shoes<br>$30.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-carousel">
-                        <div class="products">
-                            <div class="product">
-                                <img src="imgs/Windproof Jacket.png">
-                                <p>Windproof Jacket<br>$15.00</p>
-                            </div>
-                            <div class="product">
-                                <img src="imgs/Cargo Pants.png">
-                                <p>Cargo Pants<br>$10.00</p>
-                            </div>
-                            <div class="product">
-                                <img src="imgs/Blazer.png">
-                                <p>Blazer<br>$20.00</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>   
+    <section id="about_us">
+        <h2>About Us</h2>
+        <h3>Who we are</h3>
+        <div style="padding-bottom: 40px;">
+            We're a team of students and changemakers passionate about sustainability, technology, and community.<br>
+            MUGA (Make Used-items Great Again) was born out of a simple question: <br>
+            Why do so many great secondhand items go to waste — just because they're hard to resell or redistribute? <br><br>
+            We saw the frustration of garage sales with no reach, donation bins overflowing with unsold clothing, and thrift stores buried in inventory they can’t process fast enough. So we decided to do something about it.
         </div>
+
+        <h3>Our Mission</h3>
+        <div style="padding-bottom: 40px;">
+        To give every item a second chance — by using smart technology to make exchanging secondhand easier, more accessible, and more efficient for everyone
+        </div>
+
+        <h3>What we do</h3>
+        <div style="padding-bottom: 40px;">
+            MUGA is an AI-enhanced online resale marketplace that helps:
+            <ul>
+                <li>
+                    <b>Individuals</b> donate or sell used items faster and easier
+                </li>
+                <li>
+                    <b>Organizations</b> like thrift stores and nonprofits save time and cut costs
+                </li>
+                <li>
+                    <b>Customers</b> find affordable, high-quality secondhand goods — all in one place
+                </li>
+            </ul>
+            We use tools like <b>Smart Scan</b>, our AI-powered assistant, to automate listings, estimate fair resale prices, and streamline the entire process.
+        </div>
+        
+        <h3>Why It Matters</h3>
+        <div style="padding-bottom: 40px;">
+            Each year, up to 60% of secondhand items in Canada don't get redistributed efficiently. That's not just a waste of stuff — it's a lost opportunity for sustainability, community connection, and economic relief. <br>
+            With MUGA, we're building a future where used items stay in use — not in landfills.
+
+        </div>
+
     </section>
-    <br><br>
+
+
 </body>
 </html>

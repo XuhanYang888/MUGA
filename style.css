@@ -66,6 +66,7 @@ header .container {
 .logo h1 {
     font-size: 30px;
     font-weight: bold;
+    font-family: 'Xeroda', sans-serif;
 }
 
 nav ul {
@@ -404,6 +405,58 @@ details li:hover {
 
 #sort:hover, #sort:focus {
     border-color: var(--l-blue);
+}
+
+#logo-section {
+    background: rgb(44,39,106);
+    background: linear-gradient(180deg, rgba(44,39,106,1) 0%, rgba(40,39,131,1) 40%, rgba(0,48,73,1) 100%);
+    text-align: center;
+    height: 800px;
+    margin-bottom: 100px;
+    color: var(--white2);
+}
+
+#logo-img {
+    height: 250px;
+    margin-top: 200px;
+}
+
+#logo-section h1 {
+    font-family: 'Xeroda', sans-serif;
+    margin: -70px 0px;
+    margin-left: 15px;
+    font: 700;
+    font-size: 150px;
+    letter-spacing: 10px;
+}
+
+#logo-section h2 {
+    margin: -30px 0px;
+    font: 300;
+    font-size: 24px;
+}
+
+#about_us
+ {
+    text-align: center;
+    margin-bottom: 100px;
+    background-color: var(--white);
+    padding: 100px 18%;
+ }
+
+#about_us h2 {
+    font-size: 60px;
+    margin-bottom: 30px;
+}
+
+#about_us h3 {
+    font-size: 32px;
+    margin: 20px 0px;
+}
+
+#about_us div {
+    font-size: 24px;
+
 }
 
 /* Responsive Styles */
