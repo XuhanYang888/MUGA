@@ -4,3 +4,5 @@
 - The Gemma3:4B AI Model must be installed. You can do so by running `ollama pull gemma3:4b` in the Command Prompt.
 - Ollama must be running while using **SmartScan**, run `ollama serve` in the Command Prompt.
 - Please download the website files and host it locally for it to properly connect to the Ollama server.
+
+If you encounter any error, contact me at xuhany21@gmail.com
