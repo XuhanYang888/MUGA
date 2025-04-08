@@ -4,7 +4,6 @@ const sendButton = document.getElementById('send-button');
 const statusElement = document.getElementById('status');
 const uploadBox = document.getElementById('upload-box');
 
-// Function to update UI based on whether an image is present
 function updateUI() {
     if (imageBase64) {
         sendButton.disabled = false;
@@ -17,7 +16,6 @@ function updateUI() {
     }
 }
 
-// Initial UI update
 updateUI();
 
 document.getElementById('send-button').addEventListener('click', async function() {
@@ -38,7 +36,6 @@ document.getElementById('send-button').addEventListener('click', async function(
     responseArea.textContent = '';
     
     try {
-        // Create the request body with the raw base64 image data
         const requestBody = {
             model: "gemma3:4b",
             prompt: userInput,
@@ -46,7 +43,6 @@ document.getElementById('send-button').addEventListener('click', async function(
             stream: true
         };
         
-        // Always use the generate endpoint for image queries
         const response = await fetch('http://localhost:11434/api/generate', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -69,27 +65,20 @@ document.getElementById('send-button').addEventListener('click', async function(
             
             buffer += decoder.decode(value, { stream: true });
             
-            // Process complete JSON objects from the buffer
             let jsonStartIndex = 0;
             while (jsonStartIndex < buffer.length) {
                 try {
-                    // Find the end of the current JSON object
                     let jsonEndIndex = buffer.indexOf('\n', jsonStartIndex);
-                    if (jsonEndIndex === -1) break; // Incomplete JSON, wait for more data
+                    if (jsonEndIndex === -1) break;
                     
                     const jsonStr = buffer.substring(jsonStartIndex, jsonEndIndex);
                     const json = JSON.parse(jsonStr);
                     
-                    // Update response area with streaming content
                     if (json.response) {
-                        // Add the new chunk to our accumulated markdown
                         accumulatedMarkdown += json.response;
                         
-                        // Clear the response area
                         responseArea.innerHTML = '';
                         
-                        // Process the entire markdown accumulated so far
-                        // This ensures we properly handle markdown that spans across multiple chunks
                         const formattedResponse = accumulatedMarkdown
                             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                             .replace(/\n/g, '<br>');
@@ -97,19 +86,15 @@ document.getElementById('send-button').addEventListener('click', async function(
                         responseArea.innerHTML = formattedResponse;
                     }
                     
-                    // Move index past this JSON object
                     jsonStartIndex = jsonEndIndex + 1;
                 } catch (e) {
-                    // If we can't parse, it's likely an incomplete JSON object
                     break;
                 }
             }
             
-            // Keep any remaining incomplete JSON for the next iteration
             buffer = buffer.substring(jsonStartIndex);
         }
         
-        // Final formatting pass to ensure everything is properly rendered
         if (accumulatedMarkdown) {
             const finalFormattedResponse = accumulatedMarkdown
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
@@ -133,10 +118,8 @@ document.getElementById('image-upload').addEventListener('change', function(even
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            // Store the full data URL for preview
             imageBase64 = e.target.result;
             
-            // Extract just the base64 data by removing the prefix
             const base64Prefix = "base64,";
             const base64Index = imageBase64.indexOf(base64Prefix);
             if (base64Index !== -1) {
@@ -145,7 +128,6 @@ document.getElementById('image-upload').addEventListener('change', function(even
                 rawImageBase64 = null;
             }
             
-            // Update UI
             preview.src = imageBase64;
             preview.style.display = 'block';
             updateUI();
@@ -168,7 +150,6 @@ function clearImage() {
     updateUI();
 }
 
-// Add drag and drop functionality
 ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
     uploadBox.addEventListener(eventName, preventDefaults, false);
 });
@@ -206,7 +187,6 @@ function handleDrop(e) {
         const fileInput = document.getElementById('image-upload');
         fileInput.files = dt.files;
         
-        // Trigger the change event manually
         const event = new Event('change', { bubbles: true });
         fileInput.dispatchEvent(event);
     }
