@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUGA</title>
+    <link rel = "stylesheet" href = "style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>MUGA</h1>
+        
+        <div class="card">
+            <h3>Upload Image <span class="required-indicator">*</span></h3>
+            <div class="info-text">An image is required to query the Gemma3:4b model</div>
+            <input type="file" id="image-upload" accept="image/*">
+            <br><br>
+            <div class="image-container">
+                <img id="image-preview" style="max-width: 100%; max-height: 300px; border-radius: 8px; display: none;" alt="Image preview">
+                <div class="clear-image" id="clear-image">✕</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Query Message</h3>
+            <input type="text" id="user-input" placeholder="Ask something about the image..." value="Describe this image in detail">
+            <br><br>
+            <button id="send-button" disabled>Send Query</button>
+        </div>
+        
+        <div class="card">
+            <h3>Response</h3>
+            <div class="status" id="status">Upload an image to start</div>
+            <div id="response-area">Response will appear here...</div>
+            <div id="debug-info" class="debug-info"></div>
+        </div>
+
+    </div>
+
+    <script src = "script.js"></script>
+</body>
+</html>
